@@ -1,32 +1,35 @@
-import React, { Fragment } from 'react'
+import React, { Component } from 'react'
 
-const Table = (props) => {
+class Table extends Component {
 
-  const renderPlates = (array) => {
+  renderPlates = (array) => {
+    console.log(array)
     return array.map((x, index) => {
-      return <div className="empty-plate" style={{ top: -7 * index }}/>
+      return <div key={Math.floor(Math.random()*10000)} className="empty-plate" style={{ top: -7 * index }}/>
     })
   }
 
-  return (
-    <Fragment>
-      <h1 className="remaining">
-        You have: ${ /* Give me how much money I have left */ } remaining!
-      </h1>
-      <div className="table">
-        <div className="stack">
-          {
-            /* 
-               renderPlates takes an array 
-               and renders an empty plate
-               for every element in the array
-            */
-            renderPlates([])
-          }
+  // getBill(){
+  //   return this.props.table.reduce((total, item) => total + item.price, 0)
+  // }
+
+  render() {
+    return (
+      <React.Fragment>
+        <h1 className="remaining" style={this.props.remaining < 40 ? {color: "red"} : null }>
+          {this.props.remaining === 0 ? "Whoops, you're out of money 🤷‍♂️" : `You have: ¥${(this.props.remaining * 109.46).toFixed(2)} remaining!`}
+        </h1>
+        <div className="table">
+          <div className="stack">
+            {
+              this.props.table.length > 0 ? this.renderPlates([this.props.table]) : null
+            }
+          </div>
         </div>
-      </div>
-    </Fragment>
-  )
+      </React.Fragment>
+    )
+  }
+  
 }
 
 export default Table
