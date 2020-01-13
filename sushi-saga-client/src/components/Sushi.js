@@ -1,22 +1,25 @@
 import React, { Fragment } from 'react'
 
 const Sushi = (props) => {
+  const {id, name, img_url, price, isEaten} = props.renderSushis
   return (
+    <Fragment>
     <div className="sushi">
-      <div className="plate" 
-           onClick={/* Give me a callback! */ null}>
-        { 
-          /* Tell me if this sushi has been eaten! */ 
-          false ?
-            null
-          :
-            <img src={/* Give me an image source! */ } width="100%" />
+      <div className="plate"
+        data-id={id}
+        onClick={props.handleSushi}>
+        {
+
+          isEaten
+          ? null
+          : <img alt='name' src={img_url} width="100%" />
         }
       </div>
       <h4 className="sushi-details">
-        {/* Give me a name! */} - ${/* Give me a price! */}
+        {name} - ${price}
       </h4>
     </div>
+    </Fragment>
   )
 }
 
