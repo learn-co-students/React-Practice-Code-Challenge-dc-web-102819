@@ -1,9 +1,11 @@
 import React from 'react'
+import { Button } from 'semantic-ui-react'
+
 
 const MoreButton = (props) => {
-    return <button onClick={/* Fill me in! */ null}>
+    return <Button inverted color='orange' onClick={props.moreSushi}>
             More sushi!
-          </button>
+          </Button>
 }
 
 export default MoreButton
